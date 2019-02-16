@@ -7,8 +7,8 @@
 3. 回答应该是父View的ViewModel,这样，子View的数据本身来自于父ViewModel，在父View的ViewModel里面来进行处理，才是不二之选。
 ### 下面，我们知道，数据本身是会发生刷新，或者因为一些属性改变而改变的，那么子View已经创建，而又需要改变，应该怎么做了？
 1. 我们应该知道的就是如何取出之前添加进去的View了，另外我们取出来应该是binding,因为我们要对这个Binding进行设置属性，所以：
-
-    //这样就可以取出了  括号里面是view (view)
+//这样就可以取出了  括号里面是view (view)
+```
     DataBindingUtil.getBinding(linearLayout.getChildAt(i));
-    
+```    
 
