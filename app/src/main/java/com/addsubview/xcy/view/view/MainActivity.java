@@ -20,7 +20,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
     }
 
-    @BindingAdapter(value = "subItem", requireAll = false)
-    public static void setSubItem(LinearLayout linearLayout, List<String> subItem) {
+    @BindingAdapter(value = {"subItem", "viewModel"}, requireAll = false)
+    public static void setSubItem(LinearLayout linearLayout, List<String> subItem,ViewModel viewModel) {
         if (linearLayout != null) {
             //so you should clear the LinearLayout
             if (BaseUtil.isListEmpty(subItem))
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < subItem.size(); i++) {
                     SubViewLayoutBinding binding = SubViewLayoutBinding.inflate(LayoutInflater.from(linearLayout.getContext()), linearLayout, false);
                     binding.setSubItem(subItem.get(i));
+                    binding.setViewModel(viewModel);
                     linearLayout.addView(binding.getRoot());
                 }
             }

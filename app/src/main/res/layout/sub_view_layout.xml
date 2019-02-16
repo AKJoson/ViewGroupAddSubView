@@ -4,8 +4,12 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.addsubview.xcy.view.viewmodel.ViewModel" />
+
+        <variable
             name="subItem"
-            type="String"/>
+            type="String" />
 
     </data>
 
@@ -14,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/color_969"
+        android:onClick="@{()->viewModel.itemClick(subItem)}"
         android:text="@{subItem}"
         android:textColor="@color/white"
         android:textSize="14sp" />

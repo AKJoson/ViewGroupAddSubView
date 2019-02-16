@@ -2,7 +2,6 @@ package com.addsubview.xcy.view.viewmodel;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ public class ViewModel extends BaseViewModel {
     public Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            Log.e("TAG", "currrent Thread:" + Thread.currentThread().getName());
             subItem = new ArrayList<>(10);
             for (int i = 0; i < 10; i++) {
                 subItem.add("LinearLayout add sub view:" + i);
@@ -26,5 +24,9 @@ public class ViewModel extends BaseViewModel {
     public ViewModel(AppCompatActivity activity) {
         super(activity);
         new Handler().postDelayed(runnable, 10000);//ten seconds.
+    }
+
+    public void itemClick(String itemValue) {
+        Toast.makeText(mActivity, "you click the item is:" + itemValue, Toast.LENGTH_SHORT).show();
     }
 }
