@@ -8,7 +8,13 @@
 ### 下面，我们知道，数据本身是会发生刷新，或者因为一些属性改变而改变的，那么子View已经创建，而又需要改变，应该怎么做了？
 1. 我们应该知道的就是如何取出之前添加进去的View了，另外我们取出来应该是binding,因为我们要对这个Binding进行设置属性，所以：
 //这样就可以取出了  括号里面是view (view)
-```
-    DataBindingUtil.getBinding(linearLayout.getChildAt(i));
-```    
 
+        DataBindingUtil.getBinding(linearLayout.getChildAt(i));
+
+2. 比如，一行上，需要显示几个子View，那么我们必须确定一个子View的宽，因此
+
+		mContext.getResource().getDisplayMetrics().widthPixels //可以获得宽，除以个数，即可有得出一个item占用的宽度。
+		//一行显示4个
+		 ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(layout.getContext().getResources().getDisplayMetrics().widthPixels / 4, ViewGroup.LayoutParams.MATCH_PARENT);
+		//ViewGrooup在进行addView的同时，将这个layoutParams带上。
+		layout.addView(binding.getRoot(),layoutParams);
